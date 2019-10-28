@@ -165,30 +165,30 @@ const businesses = [
 //   outEl.innerHTML += "<hr/>"
 // });
 
-const outEl = document.querySelector("#output")
-outEl.innerHTML = "<h1>Manufacturing Businesses</h1>"
+// const outEl = document.querySelector("#output")
+// outEl.innerHTML = "<h1>Manufacturing Businesses</h1>"
 
-const manufacturingBusinesses = businesses.filter(business => {
-    let inNewYork = false
+// const manufacturingBusinesses = businesses.filter(business => {
+//     let inNewYork = false
 
-    if (business.companyIndustry === "Manufacturing") {
-        inNewYork = true
-    }
+//     if (business.companyIndustry === "Manufacturing") {
+//         inNewYork = true
+//     }
 
-    return inNewYork
-})
+//     return inNewYork
+// })
 
 
-manufacturingBusinesses.forEach(business => {
-    const zipCodeKey = "addressZipCode"
-  outEl.innerHTML += `
-    <h2>${business.companyName}</h2>
-    <section>
-      ${business.addressFullStreet}
-    </section>
-      ${business.addressCity}, ${business.addressStateCode} ${business[zipCodeKey]}
-    </section>
-  `
-  outEl.innerHTML += "<hr/>"
-});
+// manufacturingBusinesses.forEach(business => {
+//     const zipCodeKey = "addressZipCode"
+//   outEl.innerHTML += `
+//     <h2>${business.companyName}</h2>
+//     <section>
+//       ${business.addressFullStreet}
+//     </section>
+//       ${business.addressCity}, ${business.addressStateCode} ${business[zipCodeKey]}
+//     </section>
+//   `
+//   outEl.innerHTML += "<hr/>"
+// });
 
