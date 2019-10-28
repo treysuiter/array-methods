@@ -199,14 +199,20 @@ outEl.innerHTML += "<h1>Purchasing Agents</h1>";
     Using map(), you extract the purchasing agent object
     from each business and store it in a new array
 */
-const agents = businesses.map(business => {
-    return business.purchasingAgent
+const agentsWithCompanyAndPhone = businesses.map(business => {
+    return {
+        "fullName": `${business.purchasingAgent.nameFirst} ${business.purchasingAgent.nameFirst}`,
+        "company": business.companyName,
+        "phoneNumber": business.phoneWork
+    }
 })
 
-console.table(agents)
+// console.table(agents)
 
-agents.forEach(agent => {
-  outEl.innerHTML += `<h2>${agent.nameFirst} ${agent.nameLast}</h2>`;
-  outEl.innerHTML += "<hr/>";
+agentsWithCompanyAndPhone.forEach(agent => {
+    outEl.innerHTML += `<h2>${agent.fullName}</h2>`
+    outEl.innerHTML += `<p>${agent.company}`
+    outEl.innerHTML += `<p>${agent.phoneNumber}</p>`
+    outEl.innerHTML += "<hr/>"
 });
 
