@@ -114,10 +114,72 @@ const businesses = [
     }
 ];
 
-const outEl = document.querySelector("#output")
-outEl.innerHTML = "<h1>Active Businesses</h1>"
 
-businesses.forEach(business => {
+// sets outEl to select dom container #output and attaches h1
+
+// const outEl = document.querySelector("#output")
+// outEl.innerHTML = "<h1>Active Businesses</h1>"
+
+//initial forEach loop to print all entires to the DOM
+
+
+
+// businesses.forEach(business => {
+//     const zipCodeKey = "addressZipCode"
+//   outEl.innerHTML += `
+//     <h2>${business.companyName}</h2>
+//     <section>
+//       ${business.addressFullStreet}
+//     </section>
+//       ${business.addressCity}, ${business.addressStateCode} ${business[zipCodeKey]}
+//     </section>
+//   `
+//   outEl.innerHTML += "<hr/>"
+// });
+
+
+// used .filer to search for businesses in NY, returns true if so, then prints them to the DOM
+
+// const newYorkBusinesses = businesses.filter(business => {
+//     let inNewYork = false
+
+//     if (business.addressStateCode === "NY") {
+//         inNewYork = true
+//     }
+
+//     return inNewYork
+// })
+
+// console.log(newYorkBusinesses)
+
+// newYorkBusinesses.forEach(business => {
+//     const zipCodeKey = "addressZipCode"
+//   outEl.innerHTML += `
+//     <h2>${business.companyName}</h2>
+//     <section>
+//       ${business.addressFullStreet}
+//     </section>
+//       ${business.addressCity}, ${business.addressStateCode} ${business[zipCodeKey]}
+//     </section>
+//   `
+//   outEl.innerHTML += "<hr/>"
+// });
+
+const outEl = document.querySelector("#output")
+outEl.innerHTML = "<h1>Manufacturing Businesses</h1>"
+
+const manufacturingBusinesses = businesses.filter(business => {
+    let inNewYork = false
+
+    if (business.companyIndustry === "Manufacturing") {
+        inNewYork = true
+    }
+
+    return inNewYork
+})
+
+
+manufacturingBusinesses.forEach(business => {
     const zipCodeKey = "addressZipCode"
   outEl.innerHTML += `
     <h2>${business.companyName}</h2>
@@ -129,3 +191,4 @@ businesses.forEach(business => {
   `
   outEl.innerHTML += "<hr/>"
 });
+
