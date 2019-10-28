@@ -192,27 +192,54 @@ const businesses = [
 //   outEl.innerHTML += "<hr/>"
 // });
 
+// const outEl = document.querySelector("#output")
+// outEl.innerHTML += "<h1>Purchasing Agents</h1>";
+
+// /*
+//     Using map(), you extract the purchasing agent object
+//     from each business and store it in a new array
+// */
+// const agentsWithCompanyAndPhone = businesses.map(business => {
+//     return {
+//         "fullName": `${business.purchasingAgent.nameFirst} ${business.purchasingAgent.nameFirst}`,
+//         "company": business.companyName,
+//         "phoneNumber": business.phoneWork
+//     }
+// })
+
+// // console.table(agents)
+
+// agentsWithCompanyAndPhone.forEach(agent => {
+//     outEl.innerHTML += `<h2>${agent.fullName}</h2>`
+//     outEl.innerHTML += `<p>${agent.company}`
+//     outEl.innerHTML += `<p>${agent.phoneNumber}</p>`
+//     outEl.innerHTML += "<hr/>"
+// });
+
 const outEl = document.querySelector("#output")
-outEl.innerHTML += "<h1>Purchasing Agents</h1>";
 
-/*
-    Using map(), you extract the purchasing agent object
-    from each business and store it in a new array
-*/
-const agentsWithCompanyAndPhone = businesses.map(business => {
-    return {
-        "fullName": `${business.purchasingAgent.nameFirst} ${business.purchasingAgent.nameFirst}`,
-        "company": business.companyName,
-        "phoneNumber": business.phoneWork
-    }
-})
+document.querySelector("#companySearch")
+    .addEventListener("keypress", keyPressEvent => {
+        if (keyPressEvent.charCode === 13) {
+            // console.log("enter key pressed")
+            /* WHEN  USER PRESSES ENTER, FIND MATCHING BUSINESS */
+            const foundBusiness = businesses.find(
+                business => business.companyName.includes(keyPressEvent.target.value)
+            );
 
-// console.table(agents)
+            outEl.innerHTML = `
+                <h2>
+                ${foundBusiness.companyName}
+                </h2>
+                <section>
+                ${foundBusiness.addressFullStreet}
 
-agentsWithCompanyAndPhone.forEach(agent => {
-    outEl.innerHTML += `<h2>${agent.fullName}</h2>`
-    outEl.innerHTML += `<p>${agent.company}`
-    outEl.innerHTML += `<p>${agent.phoneNumber}</p>`
-    outEl.innerHTML += "<hr/>"
-});
-
+                </section>
+                <section>
+                ${foundBusiness.addressCity},
+                ${foundBusiness.addressStateCode}
+                ${foundBusiness.addressZipCode}
+                </section>
+            `;
+        }
+    });
