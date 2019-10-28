@@ -223,23 +223,18 @@ document.querySelector("#companySearch")
         if (keyPressEvent.charCode === 13) {
             // console.log("enter key pressed")
             /* WHEN  USER PRESSES ENTER, FIND MATCHING BUSINESS */
+
             const foundBusiness = businesses.find(
-                business => business.companyName.includes(keyPressEvent.target.value)
+                
+                business => business.purchasingAgent.nameFirst.includes(keyPressEvent.target.value) || business.purchasingAgent.nameLast.includes(keyPressEvent.target.value)
             );
 
             outEl.innerHTML = `
                 <h2>
-                ${foundBusiness.companyName}
+                ${foundBusiness.purchasingAgent.nameFirst} ${foundBusiness.purchasingAgent.nameLast}
                 </h2>
                 <section>
-                ${foundBusiness.addressFullStreet}
-
-                </section>
-                <section>
-                ${foundBusiness.addressCity},
-                ${foundBusiness.addressStateCode}
-                ${foundBusiness.addressZipCode}
-                </section>
+               
             `;
         }
     });
