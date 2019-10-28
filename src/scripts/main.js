@@ -216,25 +216,57 @@ const businesses = [
 //     outEl.innerHTML += "<hr/>"
 // });
 
+// const outEl = document.querySelector("#output")
+
+// document.querySelector("#companySearch")
+//     .addEventListener("keypress", keyPressEvent => {
+//         if (keyPressEvent.charCode === 13) {
+//             // console.log("enter key pressed")
+//             /* WHEN  USER PRESSES ENTER, FIND MATCHING BUSINESS */
+
+//             const foundBusiness = businesses.find(
+                
+//                 business => business.purchasingAgent.nameFirst.includes(keyPressEvent.target.value) || business.purchasingAgent.nameLast.includes(keyPressEvent.target.value)
+//             );
+
+//             outEl.innerHTML = `
+//                 <h2>
+//                 ${foundBusiness.purchasingAgent.nameFirst} ${foundBusiness.purchasingAgent.nameLast}
+//                 </h2>
+//                 <section>
+               
+//             `;
+//         }
+//     });
+
 const outEl = document.querySelector("#output")
 
-document.querySelector("#companySearch")
-    .addEventListener("keypress", keyPressEvent => {
-        if (keyPressEvent.charCode === 13) {
-            // console.log("enter key pressed")
-            /* WHEN  USER PRESSES ENTER, FIND MATCHING BUSINESS */
 
-            const foundBusiness = businesses.find(
-                
-                business => business.purchasingAgent.nameFirst.includes(keyPressEvent.target.value) || business.purchasingAgent.nameLast.includes(keyPressEvent.target.value)
-            );
 
-            outEl.innerHTML = `
-                <h2>
-                ${foundBusiness.purchasingAgent.nameFirst} ${foundBusiness.purchasingAgent.nameLast}
-                </h2>
-                <section>
-               
-            `;
-        }
-    });
+businesses.forEach(business => {
+    /* CALCULATE ORDER SUMMARY */
+    // let totalOrders = 0
+    // business.orders.forEach(order => totalOrders += order)
+
+    let totalOrders = business.orders.reduce(
+        (currentTotal, nextValue) => currentTotal += nextValue,
+        0
+    )
+
+
+    outEl.innerHTML += `
+        <h2>
+            ${business.companyName}
+            ($${totalOrders})
+        </h2>
+        <section>
+            ${business.addressFullStreet}
+        </section>
+        <section>
+            ${business.addressCity},
+            ${business.addressStateCode}
+            ${business.addressZipCode}
+        </section>
+    `;
+    outEl.innerHTML += "<hr/>";
+});
